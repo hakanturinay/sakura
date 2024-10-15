@@ -4,9 +4,9 @@ import gsap from 'gsap'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
      // Automatically scroll to the bottom when the page loads
-window.onload = function() {
+function scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
-};
+}
 // Load the Lottie animation
 var animation = lottie.loadAnimation({
     container: document.getElementById('lottie-container'), // Element where the animation will be rendered
@@ -18,7 +18,10 @@ var animation = lottie.loadAnimation({
 
 // Simulate loading (this is where you'd handle your actual loading logic)
 window.onload = function() {
-    window.scrollTo(0, document.body.scrollHeight);
+    setTimeout(() => {
+        scrollToBottom()
+    }, 100); // A small delay to ensure everything has loaded
+
     document.getElementById('loading-screen').classList.add('fade-out');
     document.getElementById('landing-page').classList.add('fade-in');
     setTimeout(() => {

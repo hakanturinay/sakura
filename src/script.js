@@ -18,6 +18,7 @@ var animation = lottie.loadAnimation({
 
 // Simulate loading (this is where you'd handle your actual loading logic)
 window.onload = function() {
+    window.scrollTo(0, document.body.scrollHeight);
     document.getElementById('loading-screen').classList.add('fade-out');
     document.getElementById('landing-page').classList.add('fade-in');
     setTimeout(() => {

@@ -45,7 +45,7 @@ let scrollTargetTime = 0;
 let smoothTime = 0;
 
 // Load GLTF model and set up animation
-gltfLoader.load('/models/sakura_13.glb', (gltf) => {
+gltfLoader.load('/models/sakura_14.glb', (gltf) => {
     scene.add(gltf.scene);
     gltf.scene.position.y = -0.3;
     gltf.scene.scale.set(1.1, 1.1, 1.1);

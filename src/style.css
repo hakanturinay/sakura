@@ -38,8 +38,8 @@ body {
     font-weight: 700;
     font-style: normal;
     text-shadow: 
-    2px 2px 5px rgba(0, 0, 0, 0.7), /* Soft shadow with minimal offset */
-    4px 4px 10px rgba(0, 0, 0, 0.4); /* Subtle larger shadow */
+    2px 2px 5px rgba(0, 0, 0, 0.4), /* Soft shadow with minimal offset */
+    4px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle larger shadow */
 }
 
 .section
@@ -154,3 +154,74 @@ section:nth-child(odd)
 .go-up-btn:active {
     transform: scale(0.98); /* Slightly shrink button when clicked */
 }
+
+
+.falling-leaves {
+    position: fixed;
+    z-index: 34;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Fade-in animation */
+.falling-leaves.fade-in {
+    animation: fadeIn 0.5s forwards; /* 3s for fade-in duration */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fade-out animation */
+.falling-leaves.fade-out {
+    animation: fadeOut 0s forwards; /* 3s for fade-out duration */
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+  .leaf-scene {
+    bottom: 0;
+    width: 100%;
+    will-change: transform;
+  }
+  .leaf-scene,
+  .leaf-scene div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+  }
+  .leaf-scene div {
+    width: 20px;
+    height: 20px;
+    background: url(https://vnsup.com/wp-content/uploads/2024/01/canh-hoa-dao.svg)
+      no-repeat;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    background-size: 100%;
+  }
+  .leaf-scene div:nth-child(2n) {
+    background: url(https://vnsup.com/wp-content/uploads/2024/01/canh-hoa-dao.svg)
+      no-repeat;
+    background-size: 100%;
+  }
+  

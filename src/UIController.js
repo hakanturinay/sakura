@@ -27,6 +27,7 @@ window.onload = function() {
 
 };
 // Get the button
+
 function smoothScrollToTop(duration) {
     const start = document.documentElement.scrollTop || document.body.scrollTop;
     const startTime = performance.now();
@@ -49,14 +50,17 @@ function smoothScrollToTop(duration) {
 document.getElementById("goUpBtn").addEventListener("click", function () {
     smoothScrollToTop(2000); // Adjust the duration (in ms) for smoother scroll
 });
+const finalText = document.getElementById('finalText');
 // Optional: Hide button when at the top of the page
 window.onscroll = function () {
     const goUpBtn = document.getElementById("goUpBtn");
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         goUpBtn.classList.add('visible'); // Show the button when scrolling down
         document.getElementById('goUpBtn').style.visibility = 'visible' ;
+        finalText.style.opacity = 0; // Show the text
     } else {
         document.getElementById('goUpBtn').style.visibility = 'hidden' ;
         goUpBtn.classList.remove('visible'); // Hide the button when at the top
+        finalText.style.opacity = 1; // Show the text
     }
 }

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Vollkorn+SC:wght@400;600;700;900&display=swap');
 *
 {
     margin: 0;
@@ -8,7 +9,10 @@ html
 {
     background: #1e1e1e;
 }
-
+body {
+    font-family: "Vollkorn SC", serif; 
+ 
+}
 .webgl
 {
     /* display: none; */
@@ -19,7 +23,24 @@ html
     outline: none;
     transition: opacity 1s ease; 
 }
-
+#finalText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5vw;
+    color: white;
+    text-align: center;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease; /* Smooth transition for fading in/out */
+    z-index: 999;
+    font-family: "Vollkorn SC", serif;
+    font-weight: 700;
+    font-style: normal;
+    text-shadow: 
+    2px 2px 5px rgba(0, 0, 0, 0.7), /* Soft shadow with minimal offset */
+    4px 4px 10px rgba(0, 0, 0, 0.4); /* Subtle larger shadow */
+}
 
 .section
 {
@@ -27,17 +48,15 @@ html
     align-items: center;
     height: 100vh;
     position: relative;
-    font-family: 'Cabin', sans-serif;
-    color: #ffeded;
+    color: #f5f5f5;
     text-transform: uppercase;
     font-size: 7vmin;
-    padding-left: 10%;
-    padding-right: 10%;
+    justify-content: center;
 }
 
 section:nth-child(odd)
 {
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
 /* Center the Lottie animation and loading screen */
 #loading-screen {
@@ -117,11 +136,12 @@ section:nth-child(odd)
 
 /* Styling the SVG icon inside the button */
 .go-up-btn svg {
-    width: 75px; /* Adjust size of the SVG */
-    height: 75px;
+    width: 100px; /* Adjust size of the SVG */
+    height: 100px;
     fill: white; /* Color of the SVG */
-    stroke: rgb(22, 23, 23); /* Stroke color */
-    stroke-width: 2; /* Line thickness */
+    stroke: rgba(0, 0, 0, 0.75);
+
+    stroke-width: 4; /* Line thickness */
 }
 
 /* Optional: Hover effect */

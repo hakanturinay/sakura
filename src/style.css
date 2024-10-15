@@ -162,7 +162,8 @@ section:nth-child(odd)
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 100%;
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
     -webkit-transform: translate(-50%, 0);
     -ms-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
@@ -200,7 +201,7 @@ section:nth-child(odd)
 }
   .leaf-scene {
     bottom: 0;
-    width: 100%;
+    width: 100vw;  /* Full viewport width */
     will-change: transform;
   }
   .leaf-scene,

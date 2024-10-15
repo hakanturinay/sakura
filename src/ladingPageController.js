@@ -1,218 +1,164 @@
-import * as THREE from 'three'
-import GUI from 'lil-gui'
-import gsap from 'gsap'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-
-     // Automatically scroll to the bottom when the page loads
+import * as THREE from 'three';
+import GUI from 'lil-gui';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 /**
- * Debug
+ * --- Debug UI ---
  */
-const gui = new GUI()
-const textureLoader = new THREE.TextureLoader()
-const parametersUI = {
-    materialColor: '#ffeded'
-}
+const gui = new GUI();
+const parametersUI = { materialColor: '#ffeded' };
 
-gui
-    .addColor(parametersUI, 'materialColor')
-    .onChange(() =>
-    {
-        material.color.set(parametersUI.materialColor)
-        particlesMaterial.color.set(parametersUI.materialColor)
-    })
+// GUI controls for changing material color
+gui.addColor(parametersUI, 'materialColor').onChange(() => {
+    material.color.set(parametersUI.materialColor);
+    particlesMaterial.color.set(parametersUI.materialColor);
+});
 
 /**
- * Base
+ * --- Scene Setup ---
  */
-// Canvas
-const canvas = document.querySelector('canvas.webgl')
-
-// Scene
-const scene = new THREE.Scene()
+const canvas = document.querySelector('canvas.webgl');
+const scene = new THREE.Scene();
 
 /**
- * Objects
+ * --- Texture & Material Setup ---
  */
-// Texture
+const textureLoader = new THREE.TextureLoader();
+const gradientTexture = textureLoader.load('textures/gradients/3.jpg');
+gradientTexture.magFilter = THREE.NearestFilter;
 
-const gradientTexture = textureLoader.load('textures/gradients/3.jpg')
-gradientTexture.magFilter = THREE.NearestFilter
-
-// Alpha texture (replace 'alphaTexture.png' with your texture file)
 const alphaTexture = textureLoader.load('textures/ALPHA_04.jpg');
-alphaTexture.flipY = false
-// Material
+alphaTexture.flipY = false;
+
 const material = new THREE.MeshToonMaterial({
     color: parametersUI.materialColor,
-    gradientMap: gradientTexture
-})
+    gradientMap: gradientTexture,
+});
 
+/**
+ * --- 3D Model ---
+ */
+const gltfLoader = new GLTFLoader();
+let mixer = null;
+let animationAction = null;
+let scrollTargetTime = 0; 
+let smoothTime = 0;
 
-const gltfLoader = new GLTFLoader()
-let mixer = null
-let animationAction = null
-let scrollTargetTime = 0; // Target animation time based on scroll
-let smoothTime = 0; // Smoothed animation time
+// Load GLTF model and set up animation
+gltfLoader.load('/models/sakura_9.glb', (gltf) => {
+    scene.add(gltf.scene);
+    gltf.scene.position.y = -0.3;
+    gltf.scene.scale.set(1.1, 1.1, 1.1);
 
-gltfLoader.load(
-    '/models/sakura_9.glb',
-    (gltf) =>
-    {
-        // gltf.scene.scale.set(0.025, 0.025, 0.025)
-        scene.add(gltf.scene)
-        gltf.scene.position.y = -0.3
-        gltf.scene.scale.set(1.1, 1.1, 1.1)
-
-        const frontMidMesh = gltf.scene.getObjectByName('FrontMid');
-        if (frontMidMesh) {
-            // Apply the material with the alpha texture to "FrontMid"
-            frontMidMesh.material.alphaMap = alphaTexture;
-            frontMidMesh.material.transparent = true
-        }
-        // Animation
-        mixer = new THREE.AnimationMixer(gltf.scene)
-        const animationClip = gltf.animations[0]; // Assuming the model has animations
-        animationAction = mixer.clipAction(animationClip);
-
-        // Start the animation (paused)
-        animationAction.play();
-        animationAction.paused = true;
-        // action.play()
+    const frontMidMesh = gltf.scene.getObjectByName('FrontMid');
+    if (frontMidMesh) {
+        frontMidMesh.material.alphaMap = alphaTexture;
+        frontMidMesh.material.transparent = true;
     }
-)
 
+    mixer = new THREE.AnimationMixer(gltf.scene);
+    const animationClip = gltf.animations[0]; // Assuming the model has animations
+    animationAction = mixer.clipAction(animationClip);
+    animationAction.play();
+    animationAction.paused = true; // Pause initially to be controlled by scroll
+});
 
 /**
- * Lights
+ * --- Lights ---
  */
-const directionalLight = new THREE.DirectionalLight('#ffffff', 3)
-directionalLight.position.set(1, 1, 0)
-scene.add(directionalLight)
-
-/**
- * Particles
- */
-const particleTexture = textureLoader.load('textures/CanopyTex.png'); // Replace with your texture path
+const directionalLight = new THREE.DirectionalLight('#ffffff', 3);
+directionalLight.position.set(1, 1, 0);
+scene.add(directionalLight);
 
 
 /**
- * Sizes
+ * --- Camera & Renderer Setup ---
  */
 const sizes = {
     width: window.innerWidth,
-    height: window.innerHeight
-}
+    height: window.innerHeight,
+};
 
-window.addEventListener('resize', () =>
-{
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+window.addEventListener('resize', onWindowResize);
 
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
+// Camera Group
+const cameraGroup = new THREE.Group();
+scene.add(cameraGroup);
 
-    // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
+// Base Camera
+const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100);
+camera.position.z = 6;
+cameraGroup.add(camera);
 
-/**
- * Camera
- */
-// Group
-const cameraGroup = new THREE.Group()
-scene.add(cameraGroup)
-
-// Base camera
-const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100)
-camera.position.z = 6
-cameraGroup.add(camera)
+// Renderer
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 /**
- * Renderer
+ * --- Scroll Handling ---
  */
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    alpha: true
-})
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-// renderer.toneMapping = THREE.LinearToneMapping
-// renderer.toneMappingExposure = 1.5
+window.addEventListener('scroll', onScroll);
 
-/**
- * Scroll
- */
-
-
-window.addEventListener('scroll', () =>
-{
-    if (!animationAction) return; // Ensure animation is loaded
+function onScroll() {
+    if (!animationAction) return;
 
     const currentScrollY = window.scrollY;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = 1 - (currentScrollY / maxScroll); // Invert scroll direction
 
-    // Map scroll to animation progress (0 at bottom, 1 at top)
-    const scrollPercent = 1 - (currentScrollY / maxScroll); // Invert the scroll
-
-    // Map scroll percent directly to target animation time
     const duration = animationAction.getClip().duration;
-    scrollTargetTime = scrollPercent * duration; // Set the target time based on scroll positio
+    scrollTargetTime = scrollPercent * duration; // Set target time based on scroll
+}
 
-})
+/**
+ * --- Resize Handler ---
+ */
+function onWindowResize() {
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+}
+
+/**
+ * --- Lerp Function ---
+ * Linearly interpolates between two values.
+ * @param {number} start - Start value
+ * @param {number} end - End value
+ * @param {number} t - Interpolation factor (0-1)
+ * @returns {number} - Interpolated value
+ */
 function lerp(start, end, t) {
     return start * (1 - t) + end * t;
 }
 
 /**
- * Cursor
+ * --- Animation Loop ---
+ * Main rendering and animation function.
  */
-const cursor = {}
-cursor.x = 0
-cursor.y = 0
+const clock = new THREE.Clock();
+let previousTime = 0;
 
-window.addEventListener('mousemove', (event) =>
-{
-
-})
-
-/**
- * Animate
- */
-const clock = new THREE.Clock()
-let previousTime = 0
-
-const tick = () =>
-{
-    const elapsedTime = clock.getElapsedTime()
-    const deltaTime = elapsedTime - previousTime
-    previousTime = elapsedTime
-
-
+function tick() {
+    const elapsedTime = clock.getElapsedTime();
+    const deltaTime = elapsedTime - previousTime;
+    previousTime = elapsedTime;
 
     if (mixer) {
-        mixer.update(deltaTime)
+        mixer.update(deltaTime);
 
-        // Smooth the transition between the current time and target time
-        const smoothingFactor = 0.04; // Smaller values make it smoother
+        const smoothingFactor = 0.04;
         smoothTime = lerp(smoothTime, scrollTargetTime, smoothingFactor);
-
-        // Apply the smoothed time to the animation
         animationAction.time = smoothTime;
     }
-    //particle
 
-
-    // Render
-    renderer.render(scene, camera)
-
-    // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
-
-
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(tick);
 }
 
-tick()
+tick();

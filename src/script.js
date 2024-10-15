@@ -4,9 +4,38 @@ import gsap from 'gsap'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
      // Automatically scroll to the bottom when the page loads
-     window.onload = function() {
-        window.scrollTo(0, document.body.scrollHeight);
-    };
+window.onload = function() {
+    window.scrollTo(0, document.body.scrollHeight);
+};
+// Load the Lottie animation
+var animation = lottie.loadAnimation({
+    container: document.getElementById('lottie-container'), // Element where the animation will be rendered
+    renderer: 'svg', // Can be 'canvas' or 'html'
+    loop: true, // Whether to loop the animation
+    autoplay: true, // Whether the animation starts automatically
+    path: 'textures/lottie/loading.json' // Path to the Lottie JSON file
+});
+
+// Simulate loading (this is where you'd handle your actual loading logic)
+window.onload = function() {
+    document.getElementById('loading-screen').classList.add('fade-out');
+    document.getElementById('landing-page').classList.add('fade-in');
+    setTimeout(() => {
+        document.getElementById('loading-screen').style.display = 'none';
+ 
+        // document.getElementById('landing-page').style.display = 'block'
+        // Show the content
+        // document.getElementById('content').style.display = 'block';
+    }, 1000); // Match the delay to the duration of the fade-out (1 second)
+    // Simulate a delay (e.g., fetching data, loading assets, etc.)
+    setTimeout(() => {
+        // Add fade-out class to the loading screen
+       
+
+        // Delay hiding the loading screen until after fade-out animation completes
+
+    }, 3000); // Adjust the delay to match your loading duration
+};
 /**
  * Debug
  */

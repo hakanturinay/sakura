@@ -39,8 +39,6 @@ window.onload = () => {
         leafSection.classList.add('fade-in');
     }, 250);
     setTimeout(() => {
- 
-        // leafSection.style.opacity = 1;
         loadingScreen.style.display = 'none';
         goUpBtn.style.visibility = 'visible';
         navbar.style.visibility = 'visible';

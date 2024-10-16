@@ -208,7 +208,7 @@ body {
     bottom: -15px;
     width: 45%; /* Default width (25% of the screen width) */
     height: auto;  /* Keep the aspect ratio */
-    animation: float 6s ease-in-out infinite;  /* Apply the floating animation */
+    animation: float 3s ease-in-out infinite;  /* Apply the floating animation */
   }
   
   .bottom-left {

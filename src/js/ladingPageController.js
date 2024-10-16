@@ -5,14 +5,14 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 /**
  * --- Debug UI ---
  */
-const gui = new GUI();
-const parametersUI = { materialColor: '#ffeded' };
+// const gui = new GUI();
+// const parametersUI = { materialColor: '#ffeded' };
 
-// GUI controls for changing material color
-gui.addColor(parametersUI, 'materialColor').onChange(() => {
-    material.color.set(parametersUI.materialColor);
-    particlesMaterial.color.set(parametersUI.materialColor);
-});
+// // GUI controls for changing material color
+// gui.addColor(parametersUI, 'materialColor').onChange(() => {
+//     material.color.set(parametersUI.materialColor);
+//     particlesMaterial.color.set(parametersUI.materialColor);
+// });
 
 /**
  * --- Scene Setup ---
@@ -30,10 +30,10 @@ gradientTexture.magFilter = THREE.NearestFilter;
 const alphaTexture = textureLoader.load('textures/ALPHA_04.jpg');
 alphaTexture.flipY = false;
 
-const material = new THREE.MeshToonMaterial({
-    color: parametersUI.materialColor,
-    gradientMap: gradientTexture,
-});
+// const material = new THREE.MeshToonMaterial({
+//     color: parametersUI.materialColor,
+//     gradientMap: gradientTexture,
+// });
 
 /**
  * --- 3D Model ---

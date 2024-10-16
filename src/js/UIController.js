@@ -10,7 +10,7 @@ const landingPage = document.getElementById('landing-page');
 const goUpBtn = document.getElementById("goUpBtn");
 const finalText = document.getElementById('finalText');
 const fallingLeaves = document.querySelector('.falling-leaves');
-
+const navbar = document.querySelector('.navbar')
 // Initialize Lottie animation
 const animation = lottie.loadAnimation({
     container: document.getElementById('lottie-container'),
@@ -32,7 +32,7 @@ window.onload = () => {
     landingPage.classList.add('fade-in');
     
     const leafSection = document.getElementById('leaf-section');
-  
+    navbar.style.visibility = 'visible';
     // Add the fade-in class when the page has loaded
 
     setTimeout(() => {
@@ -40,6 +40,7 @@ window.onload = () => {
         // leafSection.style.opacity = 1;
         loadingScreen.style.display = 'none';
         goUpBtn.style.visibility = 'visible';
+
     }, 1000);
 };
 

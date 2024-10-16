@@ -32,15 +32,18 @@ window.onload = () => {
     landingPage.classList.add('fade-in');
     
     const leafSection = document.getElementById('leaf-section');
-    navbar.style.visibility = 'visible';
+  
     // Add the fade-in class when the page has loaded
-
     setTimeout(() => {
+        navbar.style.visibility = 'visible';
         leafSection.classList.add('fade-in');
+    }, 250);
+    setTimeout(() => {
+ 
         // leafSection.style.opacity = 1;
         loadingScreen.style.display = 'none';
         goUpBtn.style.visibility = 'visible';
-
+        navbar.style.visibility = 'visible';
     }, 1000);
 };
 

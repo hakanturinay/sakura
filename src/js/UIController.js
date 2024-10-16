@@ -30,8 +30,14 @@ window.onload = () => {
     // Transition for loading screen
     loadingScreen.classList.add('fade-out');
     landingPage.classList.add('fade-in');
+    
+    const leafSection = document.getElementById('leaf-section');
+  
+    // Add the fade-in class when the page has loaded
 
     setTimeout(() => {
+        leafSection.classList.add('fade-in');
+        // leafSection.style.opacity = 1;
         loadingScreen.style.display = 'none';
         goUpBtn.style.visibility = 'visible';
     }, 1000);

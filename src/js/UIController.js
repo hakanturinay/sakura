@@ -8,7 +8,7 @@ const LEAF_COUNT = 50; // Number of falling leaves
 const loadingScreen = document.getElementById('loading-screen');
 const landingPage = document.getElementById('landing-page');
 const goUpBtn = document.getElementById("goUpBtn");
-const finalText = document.getElementById('finalText');
+const finalImage = document.getElementById('finalImage');
 const fallingLeaves = document.querySelector('.falling-leaves');
 const navbar = document.querySelector('.navbar')
 // Initialize Lottie animation
@@ -78,7 +78,7 @@ window.onscroll = () => {
     if (isScrolled) {
         goUpBtn.classList.add('visible');
         goUpBtn.style.visibility = 'visible';
-        finalText.style.opacity = 0;
+        finalImage.style.opacity = 0;
 
         if (!fallingLeaves.classList.contains('fade-out')) {
             fallingLeaves.classList.add('fade-out');
@@ -87,7 +87,7 @@ window.onscroll = () => {
     } else {
         goUpBtn.classList.remove('visible');
         goUpBtn.style.visibility = 'hidden';
-        finalText.style.opacity = 1;
+        finalImage.style.opacity = 1;
 
         if (!fallingLeaves.classList.contains('fade-in')) {
             fallingLeaves.classList.add('fade-in');

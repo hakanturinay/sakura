@@ -27,13 +27,12 @@ const textureLoader = new THREE.TextureLoader();
 const gradientTexture = textureLoader.load('textures/gradients/3.jpg');
 gradientTexture.magFilter = THREE.NearestFilter;
 
-const alphaTexture = textureLoader.load('textures/ALPHA_04.jpg');
+const alphaTexture = textureLoader.load('textures/base-alpha.jpg');
 alphaTexture.flipY = false;
 
-// const material = new THREE.MeshToonMaterial({
-//     color: parametersUI.materialColor,
-//     gradientMap: gradientTexture,
-// });
+const backTextureAlphaMap = textureLoader.load('textures/back-alphamap-7.jpg');
+backTextureAlphaMap.flipY = false;
+
 
 /**
  * --- 3D Model ---
@@ -41,21 +40,36 @@ alphaTexture.flipY = false;
 const gltfLoader = new GLTFLoader();
 let mixer = null;
 let animationAction = null;
+let rayLightMat = null
 let scrollTargetTime = 0; 
 let smoothTime = 0;
 
 // Load GLTF model and set up animation
-gltfLoader.load('/models/sakura_14.glb', (gltf) => {
+gltfLoader.load('/models/sakura_46.glb', (gltf) => {
     scene.add(gltf.scene);
     gltf.scene.position.y = -0.3;
     gltf.scene.scale.set(1.1, 1.1, 1.1);
-
+    console.log(gltf.scene.getObjectByName('BAck'))
+    // gltf.scene.getObjectByName('BAck').visible = false
     const frontMidMesh = gltf.scene.getObjectByName('FrontMid');
     if (frontMidMesh) {
         frontMidMesh.material.alphaMap = alphaTexture;
         frontMidMesh.material.transparent = true;
     }
-
+    const backMesh = gltf.scene.getObjectByName('BAck');
+    if (backMesh) {
+        backMesh.material.alphaMap = backTextureAlphaMap;
+        backMesh.material.transparent = true;
+    }
+    rayLightMat = gltf.scene.getObjectByName('ray_test-2');
+    if (rayLightMat) {
+        rayLightMat.position.x -=0.001
+        // rayLightMat.material.blending =  THREE.AdditiveBlending
+        rayLightMat.material.transparent = true;
+        rayLightMat.material.opacity = 0    
+       
+    }
+ 
     mixer = new THREE.AnimationMixer(gltf.scene);
     const animationClip = gltf.animations[0]; // Assuming the model has animations
     animationAction = mixer.clipAction(animationClip);
@@ -109,6 +123,7 @@ function onScroll() {
 
     const duration = animationAction.getClip().duration;
     scrollTargetTime = scrollPercent * duration; // Set target time based on scroll
+
 }
 
 /**
@@ -144,6 +159,34 @@ function lerp(start, end, t) {
 const clock = new THREE.Clock();
 let previousTime = 0;
 
+
+// Function to update opacity based on scroll value
+function updateOpacity(scrollValue) {
+    if (mixer) {
+    let opacity = 0;
+
+    if (scrollValue <= 3) {
+        opacity = 0;
+    }
+    // If scroll value is between 3 and 6, smoothly increase opacity from 0 to 0.75
+    else if (scrollValue > 3 && scrollValue <= 6) {
+        opacity = (scrollValue - 3) / (6 - 3) * 0.7;
+    }
+    // If scroll value is greater than 6, cap opacity at 0.75
+    else if (scrollValue > 6) {
+        opacity = 0.7;
+    }
+    // Set the opacity of the element
+    rayLightMat.material.opacity = opacity;
+}
+}
+
+// Example: Assume scrollValue is dynamically updated
+window.addEventListener('scroll', () => {
+    // Example: get the scroll value (or adjust based on your actual method)
+    const scrollValue = window.scrollY; // Or any other way to get your scroll value
+   
+});
 function tick() {
     const elapsedTime = clock.getElapsedTime();
     const deltaTime = elapsedTime - previousTime;
@@ -154,6 +197,8 @@ function tick() {
 
         const smoothingFactor = 0.04;
         smoothTime = lerp(smoothTime, scrollTargetTime, smoothingFactor);
+        console.log(smoothTime)
+        updateOpacity(smoothTime);
         animationAction.time = smoothTime;
     }
 

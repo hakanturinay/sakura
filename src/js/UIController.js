@@ -11,6 +11,11 @@ const goUpBtn = document.getElementById("goUpBtn");
 const finalImage = document.getElementById('finalImage');
 const fallingLeaves = document.querySelector('.falling-leaves');
 const navbar = document.querySelector('.navbar')
+//Navbar
+document.querySelector('.hamburger').addEventListener('click', () => {
+    document.querySelector('.hamburger').classList.toggle('active');
+    document.querySelector('.nav-links').classList.toggle('active');
+});
 // Initialize Lottie animation
 const animation = lottie.loadAnimation({
     container: document.getElementById('lottie-container'),

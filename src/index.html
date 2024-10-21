@@ -6,8 +6,8 @@
     <meta name="description" content="Sakura Tree Landing Page with interactive animations and falling leaves effect.">
     <meta name="author" content="Your Name or Company">
     <title>Sakura Tree</title>
-    <link rel="stylesheet" href="./main.css">
-    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/landpage.css">
     <!-- Favicon -->
     <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
 </head>
@@ -16,16 +16,26 @@
     <div id="loading-screen">
         <div id="lottie-container"></div>
     </div>
+
     <nav class="navbar">
         <div class="logo">
-            <h1>sakura</h1>
+            <a href="index.html"><img src="/textures/logo/nav-logo.png" alt="Logo"></a>
         </div>
-        <ul class="nav-links">
-            <li><a href="#story">Story</a></li>
-            <li><a href="character.html">Character</a></li>
-            <li><a href="#coming-soon">Coming Soon</a></li>
-            <li><a href="#coming-soon">Coming Soon</a></li>
-        </ul>
+
+            <ul class="nav-links">
+                <li><a href="">Story</a></li>
+                <li><a href="character.html">Character</a></li>
+                <li><a href="">Coming Soon</a></li>
+                <li><a href="">Coming Soon</a></li>
+    
+            </ul>
+ 
+        <a href="" class="btn-connect">CONNECT</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
     <!-- Canvas for WebGL animation -->
     <canvas class="webgl" id="landing-page"></canvas>

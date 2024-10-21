@@ -197,7 +197,6 @@ function tick() {
 
         const smoothingFactor = 0.04;
         smoothTime = lerp(smoothTime, scrollTargetTime, smoothingFactor);
-        console.log(smoothTime)
         updateOpacity(smoothTime);
         animationAction.time = smoothTime;
     }

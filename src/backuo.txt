@@ -1,0 +1,80 @@
+.navbar {
+    font-family: "Sarpanch", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between; /* Space out the logo and links */
+    align-items: center; /* Center the content vertically */
+    padding: 20px 50px; /* Add padding for spacing */
+    background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    height: 50px; /* Set the height of the navbar */
+    padding-left: 30px; /* Add padding to the left for better spacing */
+    visibility: hidden;
+
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center; /* Vertically center the logo */
+}
+
+.navbar .logo h1 {
+    color: white;
+    margin: 0;
+    font-size: 25px; /* Increased font size for the logo */
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the links horizontally */
+    align-items: center; /* Center the links vertically */
+    flex: 1; /* Make the links take up available space */
+}
+
+.nav-links li {
+    margin: 0 25px; /* Increased space between links */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px; /* Increased font size for links */
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: 	#4d4d4d;
+}
+
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.7); /* Darker background for mobile */
+        display: none;
+        justify-content: center; /* Center the mobile links */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 15px 0; /* More spacing between links on mobile */
+    }
+} 

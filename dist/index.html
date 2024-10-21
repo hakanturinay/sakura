@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sakura Tree Landing Page with interactive animations and falling leaves effect.">
+    <meta name="author" content="Your Name or Company">
+    <title>Sakura Tree</title>
+    <!-- Favicon -->
+    <link rel="icon" href="/path/to/favicon.ico" type="image/x-icon">
+  <script type="module" crossorigin src="/assets/index-CZWYEl5K.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DeKL49w7.css">
+</head>
+<body>
+    <!-- Loading screen with Lottie animation -->
+    <div id="loading-screen">
+        <div id="lottie-container"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href=""><img src="/textures/logo/nav-logo.png" alt="Logo"></a>
+        </div>
+
+            <ul class="nav-links">
+                <li><a href="">Story</a></li>
+                <li><a href="character">Character</a></li>
+                <li><a href="">Coming Soon</a></li>
+                <li><a href="">Coming Soon</a></li>
+    
+            </ul>
+ 
+        <a href="" class="btn-connect">CONNECT</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <!-- Canvas for WebGL animation -->
+    <canvas class="webgl" id="landing-page"></canvas>
+
+    <!-- Final text displayed at the top -->
+    <div id="finalImage">
+        <img src="/textures/logo/Logo.png" alt="Top Image">
+    </div>
+
+    <!-- Falling leaves animation -->
+    <div class="falling-leaves"></div>
+
+    <!-- Content sections -->
+    <section class="section">
+  
+    </section>
+    <section class="section">
+
+    </section>
+    <section class="section">
+
+    </section>
+    <section class="section">
+    </section>
+    <section class="section" id="leaf-section">
+        <img src="/textures/leaf/leaf-left.png" class="bottom-left" alt="Left Leaf">
+        <img src="/textures/leaf/leaf-right.png" class="bottom-right" alt="Right Leaf">
+    </section>
+
+    <!-- "Go Up" button with SVG icon -->
+    <button id="goUpBtn" class="go-up-btn" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <path fill="#ffffff" d="M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l256 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/>
+        </svg>
+    </button>
+
+    <!-- JavaScript files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+    <!-- Scroll to bottom on page load -->
+    <script>
+        window.onload = function() {
+            // Check if document is fully loaded
+            if (document.body.scrollHeight > window.innerHeight) {
+                window.scrollTo(0, document.body.scrollHeight); // Scroll to the bottom if content exists
+            }
+        };
+    </script>
+</body>
+</html>

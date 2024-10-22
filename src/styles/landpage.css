@@ -165,13 +165,13 @@
     width: 100px;
     height: 100px;
     fill: white;
-    stroke: rgba(0, 0, 0, 0.75);
-    stroke-width: 4;
+    /* stroke: rgba(0, 0, 0, 0.75);
+    stroke-width: 4; */
 }
 
 .go-up-btn:hover {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.025);
 }
 
 .go-up-btn:active {

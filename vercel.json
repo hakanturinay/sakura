@@ -3,12 +3,12 @@
     {
       "source": "/character",
       "destination": "/character.html",
-      "statusCode": 200
+      "statusCode": 301
     },
     {
       "source": "/main",
       "destination": "/index.html",
-      "statusCode": 200
+      "statusCode": 301
     },
     {
       "source": "/:path*",

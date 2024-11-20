@@ -1,87 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sakura Tree Landing Page with interactive animations and falling leaves effect.">
-    <meta name="author" content="Your Name or Company">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sakura Tree Landing Page with interactive animations and falling leaves effect."
+    />
+    <meta name="author" content="Your Name or Company" />
     <title>Niwa No Kaze</title>
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/FavIcon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/FavIcon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/FavIcon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/FavIcon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/FavIcon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/FavIcon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/FavIcon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/FavIcon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/FavIcon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/FavIcon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/FavIcon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/FavIcon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/FavIcon/favicon-16x16.png">
-    <link rel="manifest" href="/FavIcon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/FavIcon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-  <script type="module" crossorigin src="/assets/index-CVdhOyjr.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-5xGxt24j.css">
-</head>
-<body>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/FavIcon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/FavIcon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/FavIcon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/FavIcon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/FavIcon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/FavIcon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/FavIcon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/FavIcon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/FavIcon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/FavIcon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/FavIcon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/FavIcon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/FavIcon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/FavIcon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="/FavIcon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <script type="module" crossorigin src="/assets/index-m26QTU4H.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BFPQas5T.css">
+  </head>
+  <body>
     <!-- Loading screen with Lottie animation -->
     <div id="loading-screen">
-        <div id="lottie-container"></div>
+      <div id="lottie-container"></div>
     </div>
     <div class="logo">
-        <a href="main"><img src="/textures/logo/nav-logo.png" alt="Logo"></a>
-    </div>  
+      <a href="main"><img src="/textures/logo/nav-logo.png" alt="Logo" /></a>
+    </div>
     <nav class="navbar">
-            <ul class="nav-links">
-                <li><a href="">Story</a></li>
-                <li><a href="character">Character</a></li>
-                <li><a href="">shop</a></li>
-                <li><a href="">Coming Soon</a></li>
-            </ul>
+      <ul class="nav-links">
+        <li><a href="">Story</a></li>
+        <li><a href="character">Character</a></li>
+        <!-- <li><a href="">shop</a></li> -->
+        <li><a style="pointer-events: none">Coming Soon</a></li>
+      </ul>
 
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
     <!-- Canvas for WebGL animation -->
     <canvas class="webgl" id="landing-page"></canvas>
 
     <!-- Final text displayed at the top -->
     <div id="finalImage">
-        <img src="/textures/logo/Logo.png" alt="Top Image">
+      <img src="/textures/logo/Logo.png" alt="Top Image" />
     </div>
 
     <!-- Falling leaves animation -->
     <div class="falling-leaves"></div>
 
     <!-- Content sections -->
-    <section class="section">
-  
-    </section>
-    <section class="section">
-
-    </section>
-    <section class="section">
-
-    </section>
-    <section class="section">
-    </section>
+    <section class="section"></section>
+    <section class="section"></section>
+    <section class="section"></section>
+    <section class="section"></section>
     <section class="section" id="leaf-section">
-        <img src="/textures/leaf/leaf-left.png" class="bottom-left" alt="Left Leaf">
-        <img src="/textures/leaf/leaf-right.png" class="bottom-right" alt="Right Leaf">
+      <img
+        src="/textures/leaf/leaf-left.png"
+        class="bottom-left"
+        alt="Left Leaf"
+      />
+      <img
+        src="/textures/leaf/leaf-right.png"
+        class="bottom-right"
+        alt="Right Leaf"
+      />
     </section>
 
     <!-- "Go Up" button with SVG icon -->
     <button id="goUpBtn" class="go-up-btn" aria-label="Scroll to top">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path fill="#ffffff" d="M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l256 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/>
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <path
+          fill="#ffffff"
+          d="M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l256 0c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"
+        />
+      </svg>
     </button>
 
     <!-- JavaScript files -->
@@ -89,12 +155,12 @@
 
     <!-- Scroll to bottom on page load -->
     <script>
-        window.onload = function() {
-            // Check if document is fully loaded
-            if (document.body.scrollHeight > window.innerHeight) {
-                window.scrollTo(0, document.body.scrollHeight); // Scroll to the bottom if content exists
-            }
-        };
+      window.onload = function () {
+        // Check if document is fully loaded
+        if (document.body.scrollHeight > window.innerHeight) {
+          window.scrollTo(0, document.body.scrollHeight); // Scroll to the bottom if content exists
+        }
+      };
     </script>
-</body>
+  </body>
 </html>

@@ -170,6 +170,9 @@ body {
   .hamburger {
     /* visibility: hidden; */
     display: flex;
+    position: fixed;
+    right: 10px;
+    top: 20px;
   }
 
   .hamburger.active + .nav-links {

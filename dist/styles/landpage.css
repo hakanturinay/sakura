@@ -95,6 +95,8 @@
   font-size: 7vmin;
   position: relative;
   opacity: 0;
+  overflow-x: hidden;
+  overflow: hidden;
 }
 
 #loading-screen {
@@ -252,4 +254,16 @@
 
 img {
   object-fit: contain; /* Ensures the image fits the allocated space */
+}
+@media screen and (max-width: 768px) {
+  .go-up-btn {
+    bottom: 5px;
+    right: 10px;
+    padding: 0;
+  }
+  .go-up-btn svg {
+    width: 75px;
+    height: 75px;
+    fill: #fff;
+  }
 }

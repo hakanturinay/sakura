@@ -168,10 +168,20 @@ body {
   }
 
   .hamburger {
+    visibility: hidden;
     display: flex;
   }
 
   .hamburger.active + .nav-links {
     display: flex;
+  }
+  .logo {
+    position: fixed; /* Fix it in place */
+    top: 20px; /* Adjust vertical position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(
+      -50%
+    ); /* Shift back by half its width for true center */
+    z-index: 1001; /* Ensure the logo is on top */
   }
 }

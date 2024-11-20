@@ -15,6 +15,50 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // });
 
 /**
+ * --- LOADING MANAGER---
+ */
+// Set up the loading manager
+const loadingManager = new THREE.LoadingManager();
+
+// Set up loading progress callback
+loadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+  console.log(`Loading file: ${url}. Loaded ${itemsLoaded} of ${itemsTotal} files.`);
+};
+// Function to scroll to the bottom of the page
+const scrollToBottom = () => window.scrollTo(0, document.body.scrollHeight);
+const loadingScreen = document.getElementById('loading-screen');
+const landingPage = document.getElementById('landing-page');
+const goUpBtn = document.getElementById("goUpBtn");
+const navbar = document.querySelector('.navbar')
+// Set up loading completion callback
+loadingManager.onLoad = function () {
+    setTimeout(scrollToBottom, 100);
+
+    // Transition for loading screen
+    loadingScreen.classList.add('fade-out');
+    landingPage.classList.add('fade-in');
+    
+    const leafSection = document.getElementById('leaf-section');
+  
+    // Add the fade-in class when the page has loaded
+    setTimeout(() => {
+        navbar.style.visibility = 'visible';
+        leafSection.classList.add('fade-in');
+    }, 250);
+    setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        goUpBtn.style.visibility = 'visible';
+        navbar.style.visibility = 'visible';
+    }, 1000);
+  console.log('All assets loaded!');
+
+};
+
+// Set up loading error callback
+loadingManager.onError = function (url) {
+  console.error(`There was an error loading ${url}`);
+};
+/**
  * --- Scene Setup ---
  */
 const canvas = document.querySelector('canvas.webgl');
@@ -37,7 +81,7 @@ backTextureAlphaMap.flipY = false;
 /**
  * --- 3D Model ---
  */
-const gltfLoader = new GLTFLoader();
+const gltfLoader = new GLTFLoader(loadingManager);
 let mixer = null;
 let animationAction = null;
 let rayLightMat = null
@@ -45,7 +89,7 @@ let scrollTargetTime = 0;
 let smoothTime = 0;
 
 // Load GLTF model and set up animation
-gltfLoader.load('/models/sakura_46.glb', (gltf) => {
+gltfLoader.load('/models/sakura_51.glb', (gltf) => {
     scene.add(gltf.scene);
     gltf.scene.position.y = -0.3;
     gltf.scene.scale.set(1.1, 1.1, 1.1);
@@ -64,7 +108,7 @@ gltfLoader.load('/models/sakura_46.glb', (gltf) => {
     rayLightMat = gltf.scene.getObjectByName('ray_test-2');
     if (rayLightMat) {
         rayLightMat.position.x -=0.001
-        // rayLightMat.material.blending =  THREE.AdditiveBlending
+        // rayLightMat.material.blending =  THREE.MultiplyBlending
         rayLightMat.material.transparent = true;
         rayLightMat.material.opacity = 0    
        
@@ -164,18 +208,26 @@ let previousTime = 0;
 function updateOpacity(scrollValue) {
     if (mixer) {
     let opacity = 0;
-
+    let targetedOpacity = 0.85
     if (scrollValue <= 3) {
         opacity = 0;
     }
     // If scroll value is between 3 and 6, smoothly increase opacity from 0 to 0.75
     else if (scrollValue > 3 && scrollValue <= 6) {
-        opacity = (scrollValue - 3) / (6 - 3) * 0.7;
+        opacity = (scrollValue - 3) / (6 - 3) * targetedOpacity;
     }
     // If scroll value is greater than 6, cap opacity at 0.75
-    else if (scrollValue > 6) {
-        opacity = 0.7;
+    else if (scrollValue > 6 && scrollValue <= 11) {
+        opacity = targetedOpacity;
     }
+   // If scroll value is between 11 and 13, smoothly decrease opacity from 0.75 to 0
+    else if (scrollValue > 11 && scrollValue <= 13) {
+        opacity = targetedOpacity - ((scrollValue - 11) / (13 - 11) * targetedOpacity);
+    }
+    // If scroll value is greater than 13, cap opacity at 0
+    else if (scrollValue > 13) {
+        opacity = 0;
+    }  
     // Set the opacity of the element
     rayLightMat.material.opacity = opacity;
 }
@@ -197,6 +249,7 @@ function tick() {
 
         const smoothingFactor = 0.04;
         smoothTime = lerp(smoothTime, scrollTargetTime, smoothingFactor);
+        // console.log(smoothTime)
         updateOpacity(smoothTime);
         animationAction.time = smoothTime;
     }

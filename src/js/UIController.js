@@ -29,26 +29,26 @@ const animation = lottie.loadAnimation({
 const scrollToBottom = () => window.scrollTo(0, document.body.scrollHeight);
 
 // On window load, start animations and transitions
-window.onload = () => {
-    setTimeout(scrollToBottom, 100);
+// window.onload = () => {
+//     setTimeout(scrollToBottom, 100);
 
-    // Transition for loading screen
-    loadingScreen.classList.add('fade-out');
-    landingPage.classList.add('fade-in');
+//     // Transition for loading screen
+//     loadingScreen.classList.add('fade-out');
+//     landingPage.classList.add('fade-in');
     
-    const leafSection = document.getElementById('leaf-section');
+//     const leafSection = document.getElementById('leaf-section');
   
-    // Add the fade-in class when the page has loaded
-    setTimeout(() => {
-        navbar.style.visibility = 'visible';
-        leafSection.classList.add('fade-in');
-    }, 250);
-    setTimeout(() => {
-        loadingScreen.style.display = 'none';
-        goUpBtn.style.visibility = 'visible';
-        navbar.style.visibility = 'visible';
-    }, 1000);
-};
+//     // Add the fade-in class when the page has loaded
+//     setTimeout(() => {
+//         navbar.style.visibility = 'visible';
+//         leafSection.classList.add('fade-in');
+//     }, 250);
+//     setTimeout(() => {
+//         loadingScreen.style.display = 'none';
+//         goUpBtn.style.visibility = 'visible';
+//         navbar.style.visibility = 'visible';
+//     }, 1000);
+// };
 
 // Smooth scroll to the top of the page
 const smoothScrollToTop = (duration) => {

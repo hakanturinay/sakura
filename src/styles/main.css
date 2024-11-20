@@ -82,29 +82,32 @@ body {
     overflow-x: hidden;
 
 }
+
+.logo {
+    position: fixed; /* Fix it in place */
+    top: 10px; /* Adjust the top and left position as needed */
+    left: 20px;
+    z-index: 1001; /* Ensure the logo is on top of the navbar */
+}
+
+.logo img {
+    height: 50px;
+    width: 100px;
+}
+
 /* Basic styling for the navbar */
 .navbar {
-
     font-family: "Sarpanch", sans-serif;
     font-weight: 500;
     font-style: normal;
     text-transform: uppercase;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
-    padding: 10px 20px;
+    padding:10px 20px;
     position: fixed;
     width: 100%;
     z-index: 1000;
-
-}
-
-.logo img {
-    height: 50px;
-    width:  100px;
-    position: relative;
-    /* transform: scale(1.25); */
-   
 }
 
 .nav-links {
@@ -127,27 +130,15 @@ body {
     color: #fff;
     font-size: 16px;
     padding: 8px 15px;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #ffe867;
-    border-bottom: 2px solid #ffe867;
+    color: 	#ff8686;
+    border-bottom: 2px solid #ff8686;
 }
 
-.btn-connect {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
 
-.btn-connect:hover {
-    background-color: #ddd;
-}
-
+/* Hamburger menu styling for smaller screens */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -161,7 +152,7 @@ body {
     width: 25px;
 }
 
-/* Responsive */
+/* Responsive Styling */
 @media screen and (max-width: 768px) {
     .nav-links {
         display: none;
@@ -187,4 +178,3 @@ body {
         display: flex;
     }
 }
-

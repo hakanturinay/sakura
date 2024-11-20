@@ -55,7 +55,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* Added box-sizing for consistent box sizing */
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .webgl {

@@ -11,7 +11,7 @@
       "statusCode": 200
     },
     {
-      "source": "/*",
+      "source": "/:path*",
       "destination": "/index.html",
       "statusCode": 200
     }

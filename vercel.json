@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/character",
+      "destination": "/character.html",
+      "statusCode": 200
+    },
+    {
+      "source": "/main",
+      "destination": "/index.html",
+      "statusCode": 200
+    },
+    {
+      "source": "/*",
+      "destination": "/index.html",
+      "statusCode": 200
+    }
+  ]
+}

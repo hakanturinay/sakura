@@ -105,7 +105,7 @@
         <li><a style="pointer-events: none">Coming Soon</a></li>
       </ul>
 
-      <div class="hamburger">
+      <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
@@ -155,6 +155,11 @@
 
     <!-- Scroll to bottom on page load -->
     <script>
+      document
+        .getElementById("hamburger")
+        .addEventListener("click", function () {
+          window.location.href = "character"; // Replace 'character' with the actual URL or anchor target
+        });
       window.onload = function () {
         // Check if document is fully loaded
         if (document.body.scrollHeight > window.innerHeight) {

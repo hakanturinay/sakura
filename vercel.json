@@ -15,5 +15,15 @@
       "destination": "/index.html",
       "statusCode": 200
     }
+  ],
+  "builds": [
+    {
+      "src": "dist/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/character.html", "dest": "/dist/character.html" },
+    { "src": "/index.html", "dest": "/dist/index.html" }
   ]
 }
